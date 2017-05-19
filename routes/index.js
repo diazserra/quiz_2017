@@ -20,6 +20,7 @@ router.param('quizId', quizController.load);
 
 // Definición de rutas de /quizzes
 router.get('/quizzes',                     quizController.index);
+router.get('/quizzes/random_play',	   quizController.randomplay);
 router.get('/quizzes/:quizId(\\d+)',       quizController.show);
 router.get('/quizzes/new',                 quizController.new);
 router.post('/quizzes',                    quizController.create);

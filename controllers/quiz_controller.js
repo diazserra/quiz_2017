@@ -119,6 +119,12 @@ exports.edit = function (req, res, next) {
     res.render('quizzes/edit', {quiz: req.quiz});
 };
 
+//GET /quizzes/random_play
+exports.randomplay = function (req, res, next) {
+
+    res.render('quizzes/random_play');
+};
+
 
 // PUT /quizzes/:quizId
 exports.update = function (req, res, next) {
