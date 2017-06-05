@@ -5,7 +5,7 @@ var quizController = require('../controllers/quiz_controller');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index');
+  res.render('index', {title: 'Quiz'});
 });
 
 // Pagina de creditos
@@ -33,5 +33,9 @@ router.get('/quizzes/:quizId(\\d+)/check', quizController.check);
 router.get('/quizzes/randomcheck/:quizId(\\d+)', quizController.randomcheck);
 router.get('/quizzes/random_nomore', quizController.randomnone);
 
+
+router.get('/help', function(req, res, next) {
+    res.render('help');
+});
 
 module.exports = router;
