@@ -292,19 +292,33 @@ exports.check = function (req, res, next) {
 
 // GEt /quizzes/randomcheck
 exports.randomcheck = function (req, res, next) {
-    var answer = req.query.answer || "";
-    var result = answer.toLowerCase().trim() === req.quiz.answer.toLowerCase().trim();//Si el usuario acierta -> true
-    if(result){
-        req.session.randomplay.resolved.push(parseInt(req.quiz.id));
-    }
+
+	if(req.session.randomplay){
+		if(!req.session.randomplay.resolved){
+			var aux = []
+			req.session.randomplay.resolved=aux;
+		}
+	} else {
+		var auxplay={};
+		req.session.randomplay=auxplay;
+		var aux = []
+		req.session.randomplay.resolved=aux;
+
+	}
+
+	var answer = req.query.answer || "";
+	var result = answer.toLowerCase().trim() === req.quiz.answer.toLowerCase().trim();//Si el usuario acierta -> true
+	if(result){
+		req.session.randomplay.resolved.push(parseInt(req.quiz.id));
+	}
 
 
-    res.render('quizzes/random_result', {
-        score: req.session.randomplay.resolved.length,
-        quizId: req.quiz.id,
-        answer: answer,
-        result: result
-  });
+	res.render('quizzes/random_result', {
+	        score: req.session.randomplay.resolved.length,
+	        quizId: req.quiz.id,
+	        answer: answer,
+	        result: result
+	});
 
 };
 //GET /quizzes/randomnone
