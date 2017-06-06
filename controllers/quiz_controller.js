@@ -187,7 +187,11 @@ exports.randomplay = function (req, res, next) {
             var findOptions = {
                 where: whereopt,
                 offset: aleatorio,
-                limit: 1
+                limit: 1,
+		include: [
+                    {model: models.Tip, include: [{model: models.User, as : 'Author'}]},
+                    {model: models.User, as: 'Author'}
+		]
             };
             return models.Quiz.findAll(findOptions);
         })
